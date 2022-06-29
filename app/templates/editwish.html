@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topbar">
+    <div><h1>Hello {{user.fname}} Make a wish !</h1></div>
+    <div><h3><a href="/logout">Log out</a></h3></div>
+    </div>
+    <div>
+        <div>
+            {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="{{wish.id}}/e" method="post">
+            {%csrf_token%}
+            <label for="item"> I wish for : <input type="text" name="item" value="{{wish.item}}"></label>
+            <br>
+            <label for="item">Description : <input type="text" name="desc"  value="{{wish.desc}}"></label>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        
+        <a href="/home"><input type="submit" value="cancel"></a>
+    </div>
+    </div>
+</body>
+</html>

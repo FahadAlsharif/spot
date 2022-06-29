@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="topbar">
+        <h1>Welcome: {{user.fname}}</h1>
+        <div>
+        <h3><a href="/logout">Log out</a></h3>
+        <h3><a href="home/addwish"> Make a wish!</a></h3>
+        <h3><a href="home/stat">View stats</a></h3>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="Dash">
+            <p>Your wish list:</p>
+            <table>
+                <tr>
+                <th>Item</th>
+                <th>Date add</th>
+                <th>Actions</th>
+                </tr>
+                {%for x in wish%}
+                {%if x.user.id == request.session.loggedInId%}
+                {%if x.done == False%}
+                <tr>
+                <td>{{x.item}}</td>
+                <td>{{x.createdAt}}</td>
+                <td><a href="home/del/{{x.id}}">Remove</a>|<a href="home/edit/{{x.id}}">Edit</a>|<a href="home/Granted/{{x.id}}">Granted!</a></td>
+                </tr>
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+            </table>
+        </div>
+        <div class="Dash">
+            <p>Granted wishes:</p>
+            <table>
+                <tr>
+                <th>Item</th>
+                <th>wisher</th>
+                <th>Date add</th>
+                <th>Date Granted</th>
+                <th>like</th>
+                <th>Actions</th>
+                </tr>
+                {%for x in granted%}
+                <tr>
+                <td><p>{{x.Gran.item}}</p></td>
+                <td>{{x.Gran.user.fname}}</td>
+                <td>{{x.Gran.createdAt}}</td>
+                <td>{{x.createdAt}}</td>
+                <td><p>{{x.Gran.like.count}}</p></td>
+                {%if user not in x.Gran.like.all%}
+                <td><a href="/like/{{x.Gran.id}}">like !</a></td>
+                {%else%}
+                <td><p>liked</p></td>
+                {%endif%}
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+</html>

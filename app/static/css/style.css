@@ -1,0 +1,28 @@
+
+.topbar{
+    display: flex;
+    justify-content: space-around;
+}
+.main {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.messages{
+margin-left: 50%;
+}
+
+table, th {
+    border: 1px solid rgb(82, 82, 82);
+}
+table, th, td {
+    border: 1px solid black;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Dash{
+    margin-left: 40%;
+}

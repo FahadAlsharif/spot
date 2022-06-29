@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topbar">
+        <div></div>
+        <h3><a href="/home">Dashboard</a></h3>
+        <h3><a href="/logout">Log out</a></h3>
+    </div>
+    <div>
+    <h1>Hello {{user.fname}}! there your stats!</h1>
+    <h3>Total wishes Granted so far for all users :{{Granted.count}}</h3>
+    <p>Your granted wishes : {{userd.count}}</p>
+    <p>Your pendinf wishes : {{userf.count}}</p>
+</div>
+</body>
+</html>
